@@ -8,13 +8,13 @@ The dataset is the Human Activity Recognition database built from the recordings
 [Human Activity Recognition Using Smartphones](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones)
 
 ## Files
-1.`CodeBook.md` a code book that describes the variables, the data, and transformations
+1. `CodeBook.md` a code book that describes the variables, the data, and transformations
 
-2.`run_analysis.R` is an R script that executes the following:
+2. `run_analysis.R` is an R script that executes the following:
     - Downloading and getting the data
     - Merging the training and test sets to create one data set.
     - Extracting only the measurements on the mean and standard deviation for each measurement.
     - Use of descriptive activity names to name the activities in the data set
     - Label the data set with descriptive variable names.
     -  From the labelled data set, create a second,independent tidy data set with the average of each variable for each activity and each subject.
-3.`FinalTidyData.txt ` is the final tidy data. 
+3. `FinalTidyData.txt ` is the final tidy data. 
