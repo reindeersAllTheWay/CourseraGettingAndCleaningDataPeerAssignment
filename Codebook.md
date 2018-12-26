@@ -5,18 +5,9 @@ The `run_analysis.R` script performs the data preparation and then followed by t
 ### 1.  Download the dataset
 Dataset downloaded and extracted under the folder called UCI HAR Dataset
 
-- **Note**: If trouble in downloading the zip file, replace http instead of https
-
 ```R
-> if (!file.exists(filename)){
-+   fileURL <- "http://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
-+   download.file(fileURL, filename, method="curl")
-+ }  
-```
-```
-% Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-100 59.6M  100 59.6M    0     0   323k      0  0:03:08  0:03:08 --:--:--  318k 
+fileURL <- "http://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
+download.file(fileURL, filename, method="curl")
 ```
 
 ### 2.  Assign all data frames
@@ -61,7 +52,7 @@ Contains train data of activities’code labels<br/>
               y_train <- read.table("UCI HAR Dataset/train/y_train.txt", col.names = "code")
 ```
 
-### 3. Merges the training and the test sets to create one data set
+### 3. Merging the training and test sets to create one data set.
  - `X` `(10299 rows, 561 columns)` is created by merging `x_train` and `x_test` using `rbind()` function
  ```R
                                       X <- rbind(x_train, x_test)
@@ -78,19 +69,19 @@ Contains train data of activities’code labels<br/>
 ```R
                                   Merged_Data <- cbind(Subject, Y, X)
 ```
-### 4. Extracts only the measurements on the mean and standard deviation for each measurement
+### 4. Extracting only the measurements on the mean and standard deviation for each measurement.
 `TidyData` (10299 rows, 88 columns) is created by subsetting `Merged_Data`, selecting only columns: `subject`, `code` and the measurements on the `mean` and `standard deviation (std)` for each measurement
 
 ```R
               TidyData <- Merged_Data %>% select(subject, code, contains("mean"), contains("std"))
 ```
-### 5. Uses descriptive activity names to name the activities in the data set
+### 5. Use of descriptive activity names to name the activities in the data set
 Entire numbers in `code` column of the `TidyData` replaced with corresponding activity taken from second column of the  activities variable
 ```R
 TidyData$code <- activities[TidyData$code, 2]
 ```
 
-### 6. Appropriately labels the data set with descriptive variable names
+### 6. Label the data set with descriptive variable names.
 - `code` column in `TidyData` renamed into `activities`
 - All `Acc` in column’s name replaced by `Accelerometer`
 - All `Gyro` in column’s name replaced by `Gyroscope`
@@ -115,7 +106,7 @@ TidyData$code <- activities[TidyData$code, 2]
         names(TidyData)<-gsub("gravity", "Gravity", names(TidyData))
 ```
 
-### 7. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject
+### 7. From the labelled data set, create a second,independent tidy data set with the average of each variable for each activity and each subject.
 - `FinalData` (180 rows, 88 columns) is created by sumarizing `TidyData` taking the means of each variable for each activity and each subject, after groupped by subject and activity.
 - Export `FinalData` into `FinalData.txt` file.
 ```R
