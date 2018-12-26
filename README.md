@@ -1,4 +1,4 @@
-# Peer Review: Getting and Cleaning Data project
+# Getting and Cleaning Data project
 This repository is my submission for the JHU Getting and Cleaning Data course project. 
 This is an exercise on how to get and clean data.
 
